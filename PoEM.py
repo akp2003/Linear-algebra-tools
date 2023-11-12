@@ -1,5 +1,4 @@
 #Write the matrix as Product of Elementary Matrices
-#This code is written by Arshak Parsa
 from sympy.matrices import Matrix,eye
 from sympy import Rational,pprint
 d=[]
@@ -35,7 +34,7 @@ def amr(M,a,b,c):
 	
 def PoEM(M):#n×m
 	if M.det()==0:
-		print("Impossible!")
+		print("Impossible!")												
 		return
 	n,m=M.shape
 	k=0
@@ -52,10 +51,9 @@ def PoEM(M):#n×m
 				sr(M,j,k)
 			k+=1
 			
-		
 		for p in range(n):
-			if p!=j and (M[p,i]!=0):
-				amr(M,p,j,-M[p,i])
+			if p!=k-1 and (M[p,i]!=0):
+				amr(M,p,k-1,-M[p,i])
 	
 
 A=Matrix([
@@ -63,7 +61,14 @@ A=Matrix([
 [0,1,5],
 [1,0,3]
 ])
-
+"""
+A=Matrix([
+[1,2,4,2],
+[0,0,1,5],
+[0,0,1,0],
+[5,1,0,3],
+])
+"""
 pprint(A)
 PoEM(A.copy())
 
